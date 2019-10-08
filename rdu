@@ -95,14 +95,14 @@ setup_redash_docker() {
 }
 
 make_command "destroy" "kill and remove redash docker environment"
-destroy_all(){
+destroy(){
   sudo rm -Rfv $REDASH_BASE_PATH
   docker kill `docker ps | grep redash | cut -f1 -d" "` || echo "nothing to kill"
 }
 
 make_command "create" "(destroy), download, setup and start redash docker environment"
 create(){
-  destroy_all
+  destroy
   create_directories
   create_config
   setup_redash_docker
